@@ -14,7 +14,7 @@ const SIM_LAYER_1_RID = '1';
 const SIM_LAYER_2_RID = '2';
 const SIM_LAYER_3_RID = '3';
 
-export const HD_BITRATE = 2500000;
+export const HD_BITRATE = 22000000;
 export const HD_SCALE_FACTOR = 1;
 export const LD_SCALE_FACTOR = 4;
 export const SD_SCALE_FACTOR = 2;

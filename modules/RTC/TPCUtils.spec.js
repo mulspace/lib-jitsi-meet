@@ -19,6 +19,7 @@ describe('TPCUtils', () => {
             'a=group:BUNDLE video',
             'm=video 9 RTP/SAVPF 100 96',
             'c=IN IP4 0.0.0.0',
+            'b=AS:22000',
             'a=rtpmap:100 VP8/90000',
             'a=fmtp:96 apt=100',
             'a=rtcp:9 IN IP4 0.0.0.0',

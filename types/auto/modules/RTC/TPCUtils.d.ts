@@ -1,4 +1,4 @@
-export const HD_BITRATE: 2500000;
+export const HD_BITRATE: 22000000;
 export const HD_SCALE_FACTOR: 1;
 export const LD_SCALE_FACTOR: 4;
 export const SD_SCALE_FACTOR: 2;

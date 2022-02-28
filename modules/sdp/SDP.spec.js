@@ -45,12 +45,13 @@ describe('SDP', () => {
             'a=rtcp-mux\r\n',
             'm=video 9 UDP/TLS/RTP/SAVPF 107 100 99 96\r\n',
             'c=IN IP4 0.0.0.0\r\n',
+            'b=AS:13000\r\n',
             'a=rtpmap:107 h264/90000\r\n',
             'a=rtpmap:100 VP8/90000\r\n',
             'a=rtpmap:99 rtx/90000\r\n',
             'a=rtpmap:96 rtx/90000\r\n',
-            'a=fmtp:107 x-google-start-bitrate=800\r\n',
-            'a=fmtp:100 x-google-start-bitrate=800\r\n',
+            'a=fmtp:107 x-google-start-bitrate=10000\r\n',
+            'a=fmtp:100 x-google-start-bitrate=10000\r\n',
             'a=fmtp:99 apt=107\r\n',
             'a=fmtp:96 apt=100\r\n',
             'a=rtcp:9 IN IP4 0.0.0.0\r\n',
@@ -173,7 +174,7 @@ describe('SDP', () => {
                 <rtcp-fb subtype='pli' type='nack' xmlns='urn:xmpp:jingle:apps:rtp:rtcp-fb:0'/>
                 <rtcp-fb type='goog-remb' xmlns='urn:xmpp:jingle:apps:rtp:rtcp-fb:0'/>
                 <rtcp-fb type='transport-cc' xmlns='urn:xmpp:jingle:apps:rtp:rtcp-fb:0'/>
-                <parameter name='x-google-start-bitrate' value='800'/>
+                <parameter name='x-google-start-bitrate' value='10000'/>
             </payload-type>
             <payload-type clockrate='90000' name='rtx' id='96'>
                 <rtcp-fb subtype='fir' type='ccm' xmlns='urn:xmpp:jingle:apps:rtp:rtcp-fb:0'/>
@@ -234,6 +235,7 @@ a=ssrc:4039389863 msid:mixedmslabel mixedlabelaudio0
 a=ssrc:4039389863 mslabel:mixedmslabel
 m=video 9 UDP/TLS/RTP/SAVPF 100 96
 c=IN IP4 0.0.0.0
+b=AS:14000
 a=rtcp:1 IN IP4 0.0.0.0
 a=ice-ufrag:someufrag
 a=ice-pwd:somepwd
@@ -245,7 +247,7 @@ a=sendrecv
 a=mid:video
 a=rtcp-mux
 a=rtpmap:100 VP8/90000
-a=fmtp:100 x-google-start-bitrate=800
+a=fmtp:100 x-google-start-bitrate=10000
 a=rtcp-fb:100 ccm fir
 a=rtcp-fb:100 nack
 a=rtcp-fb:100 nack pli
@@ -307,7 +309,7 @@ a=ssrc:3758540092 mslabel:mixedmslabel
                         <rtcp-fb xmlns="urn:xmpp:jingle:apps:rtp:rtcp-fb:0" subtype="fir" type="ccm"/>
                         <rtcp-fb xmlns="urn:xmpp:jingle:apps:rtp:rtcp-fb:0" type="nack"/>
                         <rtcp-fb xmlns="urn:xmpp:jingle:apps:rtp:rtcp-fb:0" subtype="pli" type="nack"/>
-                        <parameter value="800" name="x-google-start-bitrate"/>
+                        <parameter value="10000" name="x-google-start-bitrate"/>
                         <rtcp-fb xmlns="urn:xmpp:jingle:apps:rtp:rtcp-fb:0" type="transport-cc"/>
                     </payload-type>
                     <payload-type name="rtx" clockrate="90000" id="96">
@@ -361,6 +363,7 @@ a=extmap:5 http://www.ietf.org/id/draft-holmer-rmcat-transport-wide-cc-extension
 a=ssrc:3659539811 msid:mixedmslabel mixedlabelaudio0
 m=video 9 UDP/TLS/RTP/SAVPF 100 96
 c=IN IP4 0.0.0.0
+b=AS:15000
 a=rtcp:1 IN IP4 0.0.0.0
 a=ice-ufrag:someufrag
 a=ice-pwd:somepwd
@@ -372,7 +375,7 @@ a=sendrecv
 a=mid:video
 a=rtcp-mux
 a=rtpmap:100 VP8/90000
-a=fmtp:100 x-google-start-bitrate=800
+a=fmtp:100 x-google-start-bitrate=10000
 a=rtcp-fb:100 ccm fir
 a=rtcp-fb:100 nack
 a=rtcp-fb:100 nack pli

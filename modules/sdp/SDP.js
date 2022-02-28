@@ -627,6 +627,7 @@ SDP.prototype.jingle2media = function(content) {
     }
 
     sdp += 'c=IN IP4 0.0.0.0\r\n';
+    sdp += 'b=AS:12000\r\n';
     if (!sctp.length) {
         sdp += 'a=rtcp:1 IN IP4 0.0.0.0\r\n';
     }
