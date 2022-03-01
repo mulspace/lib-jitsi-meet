@@ -380,6 +380,21 @@ class MLineWrap {
     }
 }
 
+function updateBandwidthRestriction(sdp, bandwidth) {
+  let modifier = 'AS';
+
+  if (sdp.indexOf('b=' + modifier + ':') === -1) {
+    // insert b= after c= line.
+    sdp = sdp.replace(/c=IN (.*)\r\n/, 'c=IN $1\r\nb=' + modifier + ':' + bandwidth + '\r\n');
+    sdp = sdp.replace(/c=IN (.*)\r\n/, 'c=IN $1\r\nb=' + modifier + ':' + bandwidth + '\r\n');
+    sdp = sdp.replace(/c=IN (.*)\r\n/, 'c=IN $1\r\nb=' + modifier + ':' + bandwidth + '\r\n');
+  } else {
+    sdp = sdp.replace(new RegExp('b=' + modifier + ':.*\r\n'), 'b=' + modifier + ':' + bandwidth + '\r\n');
+  }
+
+  return sdp;
+}
+
 /**
  * Utility class for SDP manipulation using the 'sdp-transform' library.
  *
@@ -405,6 +420,11 @@ export class SdpTransformWrap {
      */
     constructor(rawSDP) {
         this.parsedSDP = transform.parse(rawSDP);
+        for(let i=0; i<this.parsedSDP.media.length; i++ ) {
+            if (this.parsedSDP.media[i].type === "video") {
+                this.parsedSDP.media[i].bandwidth = [{type:"AS", limit: 20000}]
+            }
+        }
     }
 
     /**
@@ -429,6 +449,8 @@ export class SdpTransformWrap {
      * @return {string}
      */
     toRawSDP() {
+        console.log("====> SDP DATA:", this.parsedSDP)
+        // console.log("====> SDP TXT:", transform.write(this.parsedSDP))
         return transform.write(this.parsedSDP);
     }
 }
