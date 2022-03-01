@@ -405,6 +405,11 @@ export class SdpTransformWrap {
      */
     constructor(rawSDP) {
         this.parsedSDP = transform.parse(rawSDP);
+        for(let i=0; i<this.parsedSDP.media.length; i++ ) {
+            if (this.parsedSDP.media[i].type === "video") {
+                this.parsedSDP.media[i].bandwidth = [{type:"AS", limit: 50000}]
+            }
+        }
     }
 
     /**
@@ -429,6 +434,7 @@ export class SdpTransformWrap {
      * @return {string}
      */
     toRawSDP() {
+        console.log("====> SDP DATA:", this.parsedSDP)
         return transform.write(this.parsedSDP);
     }
 }

@@ -306,6 +306,7 @@ export default function TraceablePeerConnection(
     // override as desired
     this.trace = (what, info) => {
         logger.debug(what, info);
+        console.log(what, info);
 
         this.updateLog.push({
             time: new Date(),
@@ -1618,7 +1619,10 @@ TraceablePeerConnection.prototype._mungeCodecOrder = function(description) {
             // This is needed on react native clients as react-native-webrtc returns the
             // SDP that the application passed instead of returning the SDP off the native side.
             // This line automatically gets cleared on web on every renegotiation.
-            mLine.bandwidth = undefined;
+            mLine.bandwidth = [ {
+                type: 'AS',
+                limit: 50000
+            } ];
         }
     } else {
         SDPUtil.stripCodec(mLine, this.codecPreference.mimeType);
