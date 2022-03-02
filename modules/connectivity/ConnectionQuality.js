@@ -397,6 +397,9 @@ export default class ConnectionQuality {
             quality = Math.min(quality, prevConnectionQuality + (diffSeconds * maxIncreasePerSecond));
         }
 
+        console.log('Reset quality to 100 from ', quality, ' for ', videoType, '/', isMuted, '/', resolutionName);
+        quality = 100;
+
         return Math.min(100, quality);
     }
 
